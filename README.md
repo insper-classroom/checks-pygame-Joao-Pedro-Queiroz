@@ -1,7 +1,5 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=12400241&assignment_repo_type=AssignmentRepo)
-# Checks de estudo de Pygame [VOCÊ PODE SUBSTITUIR ESTE TÍTULO POR OUTRO MELHOR]
-
-[ESTE ARQUIVO É APENAS UMA BASE PARA O SEU README. FIQUE À VONTADE PARA MODIFICÁ-LO COMO QUISER - APAGUE ESTA MENSAGEM :)]
+# Andamento do jogo de João Pedro
 
 Este é um projeto desenvolvido na disciplina Developer Life, do 1o semestre do curso de Ciência da Computação do Insper. O intuito deste projeto é aprender e praticar o uso da biblioteca Pygame para o desenvolvimento de jogos 2D usando Python.
 
