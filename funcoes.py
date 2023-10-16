@@ -24,6 +24,8 @@ def inicializa():
               'fundo': pygame.image.load('assets/img/starfield.png'), # Carrega uma imagem
               'fundo_tamanho': (550, 600),
               'estrelas': estrelas,
+              'vida_fonte': pygame.font.Font('assets/font/PressStart2P.ttf', 25), # Carrega o texto onde o primeiro argumento é o caminho do arquivo da fonte e o segundo é o tamanho
+              'vida': 3
               } 
 
     return window, assets
@@ -50,8 +52,11 @@ def desenha(window, assets):
     window.blit(nave, (largura_jogo // 2 - assets['nave_tamanho'][0] // 2, altura_jogo - assets['nave_tamanho'][1] - 35)) # Desenha a imagem já carregada por pygame.image.load em window na posição (x, y).
 
     for estrela in assets['estrelas']:
-        cor = (225, 225, 225)
+        cor = (255, 255, 255)
         pygame.draw.circle(window, cor, estrela[0], estrela[1]) # Desenha um círculo na janela window (primeiro argumento), preenchido com a cor (segundo argumento) e com vértices listados como tuplas em vertices (terceiro argumento) com os valores (x,y)
+
+    vida = assets['vida_fonte'].render(chr(9829) * assets['vida'], True, (255, 0, 0)) # Cria uma imagem do texto
+    window.blit(vida, (20, 0))
 
     pygame.display.update() # Atualiza a janela do jogo
 
