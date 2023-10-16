@@ -1,5 +1,5 @@
 import funcoes
 
 
-janela = funcoes.inicializa()
-funcoes.game_loop(janela)
+window, assets = funcoes.inicializa()
+funcoes.game_loop(window, assets)
