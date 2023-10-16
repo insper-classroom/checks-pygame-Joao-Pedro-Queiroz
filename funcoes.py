@@ -20,7 +20,7 @@ def inicializa():
         estrelas += [(center, tamanho)]
 
     assets = {'nave': pygame.image.load('assets/img/playerShip1_orange.png'), 
-              'nave_tamanho': (50, 38),
+              'nave_tamanho': (60, 50),
               'fundo': pygame.image.load('assets/img/starfield.png'), # Carrega uma imagem
               'fundo_tamanho': (550, 600),
               'estrelas': estrelas,
