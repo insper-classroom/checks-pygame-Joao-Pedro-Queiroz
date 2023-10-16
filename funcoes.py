@@ -27,29 +27,46 @@ def inicializa():
               'vida_fonte': pygame.font.Font('assets/font/PressStart2P.ttf', 25), # Carrega o texto onde o primeiro argumento é o caminho do arquivo da fonte e o segundo é o tamanho
               'vida': 3
               } 
+    
+    state = {
+        'jogador_x': largura_jogo // 2 - assets['nave_tamanho'][0] // 2,
+        'jogador_y': altura_jogo - assets['nave_tamanho'][1] - 35,
+    }
 
-    return window, assets
+    return window, assets, state
 
 
-def recebe_eventos():
+def recebe_eventos(state):
     game = True
     
     for event in pygame.event.get(): # Retorna uma lista com todos os eventos que ocorreram desde a última vez que essa função foi chamada
         if event.type == pygame.QUIT: 
             game = False
+        
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+            state['jogador_x'] += 10
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+            state['jogador_x'] -= 10
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+            state['jogador_y'] -= 10
+
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+            state['jogador_y'] += 10
 
     return game
 
 
-def desenha(window, assets):
-    window.fill((0, 0, 0)) # Prrenche a janela do jogo com a cor vermelha
+def desenha(window, assets, state):
+    window.fill((0, 0, 0)) # Prrenche a janela do jogo com a cor preta
     
 
     fundo = pygame.transform.scale(assets['fundo'], assets['fundo_tamanho']) # Redefinir dimensão da imagem
     window.blit(fundo, (0, 0)) # Desenha a imagem já carregada por pygame.image.load em window na posição (x, y).
 
     nave = pygame.transform.scale(assets['nave'], assets['nave_tamanho']) # Redefinir dimensão da imagem
-    window.blit(nave, (largura_jogo // 2 - assets['nave_tamanho'][0] // 2, altura_jogo - assets['nave_tamanho'][1] - 35)) # Desenha a imagem já carregada por pygame.image.load em window na posição (x, y).
+    window.blit(nave, (state['jogador_x'],  state['jogador_y'])) # Desenha a imagem já carregada por pygame.image.load em window na posição (x, y).
 
     for estrela in assets['estrelas']:
         cor = (255, 255, 255)
@@ -60,12 +77,12 @@ def desenha(window, assets):
 
     pygame.display.update() # Atualiza a janela do jogo
 
-def game_loop(window, assets):
+def game_loop(window, assets, state):
     game = True
 
     while game:
-        game = recebe_eventos()
+        game = recebe_eventos(state)
 
         if game:
-            desenha(window, assets)
+            desenha(window, assets, state)
         
