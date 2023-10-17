@@ -43,16 +43,16 @@ def recebe_eventos(state):
         if event.type == pygame.QUIT: 
             game = False
         
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_RIGHT:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
             state['jogador_x'] += 10
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_LEFT:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
             state['jogador_x'] -= 10
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
             state['jogador_y'] -= 10
 
-        if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
             state['jogador_y'] += 10
 
     return game
