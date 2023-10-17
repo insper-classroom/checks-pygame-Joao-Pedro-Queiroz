@@ -11,6 +11,7 @@ def inicializa():
 
     window = pygame.display.set_mode((largura_jogo, altura_jogo)) # Cria uma janela de 320 pixeis de largura e 240 pixeis de altura
     pygame.display.set_caption('Jogo do João Pedro') # Define o título da janela
+    fonte_padrao = pygame.font.get_default_font() # Carrega a fonte padrão
 
     estrelas = []
 
@@ -25,12 +26,14 @@ def inicializa():
               'fundo_tamanho': (550, 600),
               'estrelas': estrelas,
               'vida_fonte': pygame.font.Font('assets/font/PressStart2P.ttf', 25), # Carrega o texto onde o primeiro argumento é o caminho do arquivo da fonte e o segundo é o tamanho
-              'vida': 3
+              'vida': 3,
+              'fps_fonte': pygame.font.Font(fonte_padrao, 18),
               } 
     
     state = {
         'jogador_x': largura_jogo // 2 - assets['nave_tamanho'][0] // 2,
         'jogador_y': altura_jogo - assets['nave_tamanho'][1] - 35,
+        't0': -1,
     }
 
     return window, assets, state
@@ -74,6 +77,17 @@ def desenha(window, assets, state):
 
     vida = assets['vida_fonte'].render(chr(9829) * assets['vida'], True, (255, 0, 0)) # Cria uma imagem do texto
     window.blit(vida, (20, 0))
+
+    fps = 0
+    t1 = pygame.time.get_ticks() # Devolve quanto tempo se passou, em milissegundos, desde que a função pygame.init() foi chamada
+
+    if state['t0'] >= 0:
+        t = t1 - state['t0']
+        fps = 1000 / t
+        
+    state['t0'] = t1
+    texto_fps = assets['fps_fonte'].render(f'FPS: {fps:.2f}', True, (255, 255, 255))
+    window.blit(texto_fps, (425, 580))
 
     pygame.display.update() # Atualiza a janela do jogo
 
