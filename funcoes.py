@@ -33,30 +33,56 @@ def inicializa():
     state = {
         'jogador_x': largura_jogo // 2 - assets['nave_tamanho'][0] // 2,
         'jogador_y': altura_jogo - assets['nave_tamanho'][1] - 35,
+        'velocidade_x': 0,
+        'velocidade_y': 0,
         't0': -1,
+        'last_updated': 0,
     }
 
     return window, assets, state
 
 
-def recebe_eventos(state):
+def recebe_eventos(state, assets):
     game = True
+    t1 =  pygame.time.get_ticks()
+    delta_t = (t1 - state['last_updated']) / 1000
     
     for event in pygame.event.get(): # Retorna uma lista com todos os eventos que ocorreram desde a última vez que essa função foi chamada
         if event.type == pygame.QUIT: 
             game = False
         
         if event.type == pygame.KEYDOWN and event.key == pygame.K_d:
-            state['jogador_x'] += 10
-
+            state['velocidade_x'] = 0.1
+        elif event.type == pygame.KEYUP and event.key == pygame.K_d:
+            state['velocidade_x'] = 0
+    
         if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
-            state['jogador_x'] -= 10
+            state['velocidade_x'] = -0.1
+        elif event.type == pygame.KEYUP and event.key == pygame.K_a:
+            state['velocidade_x'] = 0
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_w:
-            state['jogador_y'] -= 10
+            state['velocidade_y'] = -0.1
+        elif event.type == pygame.KEYUP and event.key == pygame.K_w:
+            state['velocidade_y'] = 0
 
         if event.type == pygame.KEYDOWN and event.key == pygame.K_s:
-            state['jogador_y'] += 10
+             state['velocidade_y'] = 0.1
+        elif event.type == pygame.KEYUP and event.key == pygame.K_s:
+            state['velocidade_y'] = 0
+
+    state['jogador_x'] += state['velocidade_x'] * delta_t
+    state['jogador_y'] += state['velocidade_y'] * delta_t
+
+    if  state['jogador_x'] < 0:
+        state['jogador_x'] += 1
+    elif state['jogador_x'] + assets['nave_tamanho'][0] > largura_jogo:
+        state['jogador_x'] -= 1
+    
+    if  state['jogador_y'] < 0:
+        state['jogador_y'] += 1
+    elif state['jogador_y'] + assets['nave_tamanho'][1] > altura_jogo:
+        state['jogador_y'] -= 1
 
     return game
 
@@ -95,7 +121,7 @@ def game_loop(window, assets, state):
     game = True
 
     while game:
-        game = recebe_eventos(state)
+        game = recebe_eventos(state, assets)
 
         if game:
             desenha(window, assets, state)
