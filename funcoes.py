@@ -75,14 +75,14 @@ def recebe_eventos(state, assets):
     state['jogador_y'] += state['velocidade_y'] * delta_t
 
     if  state['jogador_x'] < 0:
-        state['jogador_x'] += 1
+        state['jogador_x'] = 0
     elif state['jogador_x'] + assets['nave_tamanho'][0] > largura_jogo:
-        state['jogador_x'] -= 1
+        state['jogador_x'] = largura_jogo - assets['nave_tamanho'][0]
     
     if  state['jogador_y'] < 0:
-        state['jogador_y'] += 1
+        state['jogador_y'] = 0
     elif state['jogador_y'] + assets['nave_tamanho'][1] > altura_jogo:
-        state['jogador_y'] -= 1
+        state['jogador_y'] = altura_jogo - assets['nave_tamanho'][1]
 
     return game
 
