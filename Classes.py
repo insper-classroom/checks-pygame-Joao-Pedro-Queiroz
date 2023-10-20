@@ -122,6 +122,11 @@ class TelaGameOver:
 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_RETURN:
                 Jogo.atual.telas[1].vida = 3
+
+                for indice in range(len(Jogo.atual.telas[1].meteoros)):
+                    Jogo.atual.telas[1].meteoros[indice].posicao[1] = -100
+                    Jogo.atual.telas[1].meteoros[indice].last_updated = 0
+                    
                 return 0
             
         return 2
@@ -152,6 +157,8 @@ class TelaJogo:
         self.font_texto = pygame.font.Font(fonte_padrao, 18)
         self.image_fundo = pygame.image.load('assets/img/starfield.png') # Carrega uma imagem
         self.tamanho_fundo = (largura_jogo, altura_jogo)
+        self.largura_nave = largura_nave
+        self.altura_nave = altura_nave
         self.nave = Nave(largura_jogo // 2 - largura_nave // 2, altura_jogo - altura_nave - 35, largura_nave, altura_nave)
         self.vida_fonte = pygame.font.Font('assets/font/PressStart2P.ttf', 25) # Carrega o texto onde o primeiro argumento é o caminho do arquivo da fonte e o segundo é o tamanho
         self.vida = 3
@@ -223,11 +230,13 @@ class TelaJogo:
                 largura_meteoro = 50
                 altura_meteoro = 40
                 self.meteoros.append(Meteoro(posicao, velocidade, orientação, largura_meteoro, altura_meteoro))
-    
             
             if self.vida == 0:
                 self.velocidade_x = 0
                 self.velocidade_y = 0
+                self.nave.last_updated = 0
+                self.nave.x_jogador = self.largura_jogo // 2 - self.largura_nave // 2
+                self.nave.y_jogador = self.altura_jogo - self.altura_nave - 35
 
                 return 2
             
