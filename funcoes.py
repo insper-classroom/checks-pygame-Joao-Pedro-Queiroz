@@ -41,7 +41,7 @@ def inicializa():
               'fps_fonte': pygame.font.Font(fonte_padrao, 18),
               'meteoros_imagem': pygame.image.load('assets/img/meteorBrown_med1.png'), # Carrega uma imagem
               'meteoro_tamanho': (50, 40),
-              'som_tiro': pygame.mixer.Sound('assets/snd/pew.wav')
+              'som_tiro': pygame.mixer.Sound('assets/snd/pew.wav') # Carrega um som
               } 
     
     state = {
@@ -87,7 +87,7 @@ def recebe_eventos(state, assets):
             state['velocidade_y'] = 0
         
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-            assets['som_tiro'].play()
+            assets['som_tiro'].play() # Toca um som
 
     state['jogador_x'] += state['velocidade_x'] * delta_t
     state['jogador_y'] += state['velocidade_y'] * delta_t
@@ -163,7 +163,6 @@ def desenha(window, assets, state):
     window.blit(texto_fps, (425, 580)) # Desenha a imagem já carregada por pygame.image.load em window na posição (x, y).
 
     for meteoro in state['meteoros']:
-        nave = pygame.transform.scale(assets['meteoros_imagem'], assets['meteoro_tamanho']) # Redefinir dimensão da imagem
         window.blit(assets['meteoros_imagem'], meteoro['posicao']) # Desenha a imagem já carregada por pygame.image.load em window na posição (x, y).
 
     pygame.display.update() # Atualiza a janela do jogo
