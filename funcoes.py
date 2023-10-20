@@ -10,7 +10,7 @@ def inicializa():
     altura_jogo = 600
 
     window = pygame.display.set_mode((largura_jogo, altura_jogo)) # Cria uma janela de 320 pixeis de largura e 240 pixeis de altura
-    pygame.display.set_caption('Jogo do João Pedro') # Define o título da janela
+    pygame.display.set_caption('Space Atari') # Define o título da janela
     fonte_padrao = pygame.font.get_default_font() # Carrega a fonte padrão
     pygame.mixer.music.load('assets/snd/tgfcoder-FrozenJam-SeamlessLoop.ogg') # Carrega uma música
     pygame.mixer.music.play() # Começa a tocar a música

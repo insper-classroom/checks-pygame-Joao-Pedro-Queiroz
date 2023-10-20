@@ -5,7 +5,7 @@ Este é um projeto desenvolvido na disciplina Developer Life, do 1o semestre do 
 
 ## Descrição do jogo
 
-[ADICIONE AQUI UMA DESCRIÇÃO DO JOGO]
+O jogo consiste em desviar a nave dos meteoros e ver quanto tempo o jogador consegue sobreviver.
 
 ## Como jogar
 
@@ -17,4 +17,8 @@ pip install pygame
 
 Após instalar a biblioteca, clone este repositório e execute o arquivo jogo.py, dentro da pasta codigo. O jogo será aberto em uma nova janela e pode ser jogado com as seguintes teclas:
 
-[ADICIONE AQUI AS INSTRUÇÕES DO JOGO]
+W --> Move a nave para cima;
+D --> Move a nave para a direita;
+S --> Move a nave para baixo;
+A --> Move a nave para a esquerda;
+ESPAÇO --> Fazer um barulho de tiro (Ainda não implementado o tiro)

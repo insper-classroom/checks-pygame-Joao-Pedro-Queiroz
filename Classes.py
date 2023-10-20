@@ -284,6 +284,7 @@ class Jogo:
         self.largura_nave = 60
         self.altura_nave = 50
         self.window = pygame.display.set_mode((self.largura_jogo, self.altura_jogo))
+        pygame.display.set_caption('Space Atari') # Define o título da janela
         self.indice_tela_atual = 0
         self.telas = [TelaInicial(self.largura_jogo, self.altura_jogo, self.fonte_padrao), TelaJogo(self.largura_jogo, self.altura_jogo, self.fonte_padrao, self.largura_nave, self.altura_nave), TelaGameOver(self.largura_jogo, self.altura_jogo, self.fonte_padrao)]
 
