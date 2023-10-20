@@ -217,6 +217,13 @@ class TelaJogo:
             if colisão_nave_meteoro:
                 self.vida -= 1
                 del(self.meteoros[indice])
+                posicao = [randint(0, self.largura_jogo), -100]
+                velocidade = [0.1 , random()]
+                orientação = randint(-1, 1)
+                largura_meteoro = 50
+                altura_meteoro = 40
+                self.meteoros.append(Meteoro(posicao, velocidade, orientação, largura_meteoro, altura_meteoro))
+    
             
             if self.vida == 0:
                 self.velocidade_x = 0
